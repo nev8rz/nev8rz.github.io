@@ -279,16 +279,14 @@ const Hero = () => {
 
 // Helper function to highlight Python code
 function highlightCode(line: string): string {
-  // First, escape HTML to prevent XSS and parsing issues
-  let escaped = line
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+  // Only escape quotes to prevent breaking HTML attributes
+  // Don't escape < and > as we need them for span tags
+  let safe = line.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   
-  // Then apply syntax highlighting (order matters: strings first, then keywords)
-  return escaped
+  // Apply syntax highlighting
+  return safe
     .replace(/(&quot;.*?&quot;)/g, '<span class="code-string">$1</span>')
-    .replace(/('.*?')/g, '<span class="code-string">$1</span>')
+    .replace(/(&#39;.*?&#39;)/g, '<span class="code-string">$1</span>')
     .replace(/\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/g, '<span class="code-keyword">$1</span>')
     .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, '<span class="code-punctuation">$1</span>')
     .replace(/(AIResearcher|__init__)/g, '<span class="code-class">$1</span>')
