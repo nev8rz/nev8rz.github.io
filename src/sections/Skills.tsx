@@ -62,7 +62,7 @@ const Skills = () => {
     <section id="skills" className="relative py-24 lg:py-32" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
       </div>
 
@@ -74,7 +74,7 @@ const Skills = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-green text-sm text-green-400 font-mono mb-4">
+          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
             $ cat expertise.txt
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -94,7 +94,7 @@ const Skills = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="code-block rounded-2xl p-6 hover:bg-green-500/5 transition-all duration-300"
+              className="code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}>
@@ -108,7 +108,7 @@ const Skills = () => {
                   <div key={skill.name}>
                     <div className="flex justify-between mb-1">
                       <span className="text-sm text-muted-foreground font-mono">{skill.name}</span>
-                      <span className="text-sm text-green-400 font-mono">{skill.level}%</span>
+                      <span className="text-sm text-blue-400 font-mono">{skill.level}%</span>
                     </div>
                     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                       <motion.div
@@ -142,9 +142,9 @@ const Skills = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.7 + index * 0.05 }}
-                className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-green-500/5 hover:bg-green-500/10 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 cursor-default"
+                className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 cursor-default"
               >
-                <span className="text-green-400 font-mono">{tech.name}</span>
+                <span className="text-blue-400 font-mono">{tech.name}</span>
                 <span className="text-xs text-muted-foreground">// {tech.category}</span>
               </motion.div>
             ))}

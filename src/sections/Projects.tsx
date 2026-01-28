@@ -50,7 +50,7 @@ const Projects = () => {
     <section id="projects" className="relative py-24 lg:py-32" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[120px] -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
       </div>
 
@@ -62,7 +62,7 @@ const Projects = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-green text-sm text-green-400 font-mono mb-4">
+          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
             <Terminal className="w-4 h-4 inline mr-2" />
             Portfolio
           </span>
@@ -84,7 +84,7 @@ const Projects = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className={`group relative code-block rounded-2xl p-6 hover:bg-green-500/5 transition-all duration-300 ${
+              className={`group relative code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300 ${
                 project.featured ? "md:col-span-2 lg:col-span-1" : ""
               }`}
             >
@@ -99,11 +99,11 @@ const Projects = () => {
 
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                    <Code2 className="w-5 h-5 text-green-400" />
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                    <Code2 className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors font-mono">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors font-mono">
                       {project.name}
                     </h3>
                     {project.license && (
@@ -117,9 +117,9 @@ const Projects = () => {
                   href={`https://github.com/nev8rz/${project.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:bg-green-500/10 transition-colors"
+                  className="p-2 rounded-lg hover:bg-blue-500/10 transition-colors"
                 >
-                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-green-400 transition-colors" />
+                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
                 </a>
               </div>
 
@@ -132,7 +132,7 @@ const Projects = () => {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 rounded-full bg-green-500/10 text-sm text-green-400 border border-green-500/20 font-mono"
+                    className="px-3 py-1 rounded-full bg-blue-500/10 text-sm text-blue-400 border border-blue-500/20 font-mono"
                   >
                     {tech}
                   </span>
@@ -164,7 +164,7 @@ const Projects = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-green-500/30 hover:bg-green-500/10 text-green-400 px-8 py-6 text-lg rounded-lg transition-all duration-300 font-mono"
+            className="border-blue-500/30 hover:bg-blue-500/10 text-blue-400 px-8 py-6 text-lg rounded-lg transition-all duration-300 font-mono"
             asChild
           >
             <a

@@ -30,7 +30,7 @@ const Contact = () => {
     <section id="contact" className="relative py-24 lg:py-32" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
       </div>
 
@@ -42,7 +42,7 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-green text-sm text-green-400 font-mono mb-4">
+          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
             <Terminal className="w-4 h-4 inline mr-2" />
             Get In Touch
           </span>
@@ -67,16 +67,16 @@ const Contact = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="group code-block rounded-2xl p-6 hover:bg-green-500/5 transition-all duration-300"
+              className="group code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${link.color} flex items-center justify-center shadow-lg`}>
                   <link.icon className="w-7 h-7 text-white" />
                 </div>
-                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-green-400 transition-colors" />
+                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-1 font-mono">{link.name}</h3>
-              <p className="text-green-400 font-medium mb-2 font-mono">{link.handle}</p>
+              <p className="text-blue-400 font-medium mb-2 font-mono">{link.handle}</p>
               <p className="text-sm text-muted-foreground">{link.description}</p>
             </motion.a>
           ))}
@@ -89,8 +89,8 @@ const Contact = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="code-block rounded-3xl p-8 sm:p-12 text-center max-w-3xl mx-auto"
         >
-          <div className="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center mx-auto mb-6">
-            <MessageCircle className="w-8 h-8 text-green-400" />
+          <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mx-auto mb-6">
+            <MessageCircle className="w-8 h-8 text-blue-400" />
           </div>
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-mono">
             Interested in collaborating?
@@ -102,7 +102,7 @@ const Contact = () => {
           </p>
           <Button
             size="lg"
-            className="bg-green-500/10 hover:bg-green-500/20 text-green-400 border border-green-500/30 px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:shadow-glow-green font-mono"
+            className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:shadow-glow-blue font-mono"
             asChild
           >
             <a href="https://github.com/nev8rz" target="_blank" rel="noopener noreferrer">
@@ -119,7 +119,7 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex items-center justify-center gap-2 mt-12 text-muted-foreground"
         >
-          <MapPin className="w-4 h-4 text-green-400" />
+          <MapPin className="w-4 h-4 text-blue-400" />
           <span className="font-mono">Based in Shanghai, China</span>
         </motion.div>
       </div>

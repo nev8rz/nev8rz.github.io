@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-green-500/10 blur-[120px]"
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
           animate={{
             x: [0, 50, 0],
             y: [0, -30, 0],
@@ -58,8 +58,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-green text-sm text-green-400 font-mono">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono">
+                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
                 Available for Research Collaboration
               </span>
             </motion.div>
@@ -83,7 +83,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-2"
             >
-              <p className="text-2xl sm:text-3xl text-green-400 font-mono">
+              <p className="text-2xl sm:text-3xl text-blue-400 font-mono">
                 AI & Software Engineer
               </p>
               <p className="text-xl text-muted-foreground">
@@ -99,11 +99,11 @@ const Hero = () => {
               className="space-y-2"
             >
               <div className="flex items-center gap-2 text-muted-foreground">
-                <GraduationCap className="w-5 h-5 text-green-400" />
+                <GraduationCap className="w-5 h-5 text-blue-400" />
                 <span>University of Science and Technology of China (USTC)</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="w-5 h-5 text-green-400" />
+                <MapPin className="w-5 h-5 text-blue-400" />
                 <span>Shanghai, China</span>
               </div>
             </motion.div>
@@ -128,7 +128,7 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="bg-green-500/10 hover:bg-green-500/20 text-green-400 border border-green-500/30 px-6 py-6 text-lg rounded-lg font-mono transition-all duration-300 hover:shadow-glow-green group"
+                className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-6 py-6 text-lg rounded-lg font-mono transition-all duration-300 hover:shadow-glow-blue group"
                 asChild
               >
                 <a href="#projects">
@@ -161,9 +161,9 @@ const Hero = () => {
                 href="https://github.com/nev8rz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:bg-green-500/10 hover:border-green-500/30 transition-all duration-300 group"
+                className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 group"
               >
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-green-400 transition-colors" />
+                <Github className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
               </a>
             </motion.div>
           </div>
@@ -177,7 +177,7 @@ const Hero = () => {
           >
             <div className="code-block rounded-2xl overflow-hidden shadow-2xl">
               {/* Editor Header */}
-              <div className="bg-[#1a1a1a] px-4 py-3 flex items-center gap-2 border-b border-green-500/20">
+              <div className="bg-[#1a1a1a] px-4 py-3 flex items-center gap-2 border-b border-blue-500/20">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -231,7 +231,7 @@ const Hero = () => {
                     <span className="text-muted-foreground w-8 text-right mr-4 select-none">
                       11
                     </span>
-                    <span className="w-2 h-5 bg-green-400 terminal-cursor" />
+                    <span className="w-2 h-5 bg-blue-400 terminal-cursor" />
                   </motion.div>
                 </div>
               </div>
@@ -242,11 +242,11 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
-              className="absolute -bottom-4 -right-4 glass-green rounded-xl p-4"
+              className="absolute -bottom-4 -right-4 glass-purple rounded-xl p-4"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                  <Terminal className="w-5 h-5 text-green-400" />
+                <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                  <Terminal className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground">Research Focus</div>
@@ -268,9 +268,9 @@ const Hero = () => {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-green-500/30 flex justify-center pt-2"
+          className="w-6 h-10 rounded-full border-2 border-blue-500/30 flex justify-center pt-2"
         >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+          <motion.div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
         </motion.div>
       </motion.div>
     </section>
@@ -279,9 +279,17 @@ const Hero = () => {
 
 // Helper function to highlight Python code
 function highlightCode(line: string): string {
-  return line
-    .replace(/(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)/g, '<span class="code-keyword">$1</span>')
-    .replace(/(".*?")/g, '<span class="code-string">$1</span>')
+  // First, escape HTML to prevent XSS and parsing issues
+  let escaped = line
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  
+  // Then apply syntax highlighting (order matters: strings first, then keywords)
+  return escaped
+    .replace(/(&quot;.*?&quot;)/g, '<span class="code-string">$1</span>')
+    .replace(/('.*?')/g, '<span class="code-string">$1</span>')
+    .replace(/\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/g, '<span class="code-keyword">$1</span>')
     .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, '<span class="code-punctuation">$1</span>')
     .replace(/(AIResearcher|__init__)/g, '<span class="code-class">$1</span>')
     .replace(/(name|role|focus|mission)/g, '<span class="code-property">$1</span>');

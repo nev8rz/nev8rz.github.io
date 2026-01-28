@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="relative py-12 border-t border-white/5">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-green-500/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-blue-500/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,25 +40,25 @@ const Footer = () => {
           >
             <a
               href="#about"
-              className="text-sm text-muted-foreground hover:text-green-400 transition-colors font-mono"
+              className="text-sm text-muted-foreground hover:text-blue-400 transition-colors font-mono"
             >
               About
             </a>
             <a
               href="#projects"
-              className="text-sm text-muted-foreground hover:text-green-400 transition-colors font-mono"
+              className="text-sm text-muted-foreground hover:text-blue-400 transition-colors font-mono"
             >
               Projects
             </a>
             <a
               href="#skills"
-              className="text-sm text-muted-foreground hover:text-green-400 transition-colors font-mono"
+              className="text-sm text-muted-foreground hover:text-blue-400 transition-colors font-mono"
             >
               Skills
             </a>
             <a
               href="#contact"
-              className="text-sm text-muted-foreground hover:text-green-400 transition-colors font-mono"
+              className="text-sm text-muted-foreground hover:text-blue-400 transition-colors font-mono"
             >
               Contact
             </a>
@@ -75,9 +75,9 @@ const Footer = () => {
               href="https://github.com/nev8rz"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-green-500/10 transition-colors"
+              className="p-2 rounded-lg hover:bg-blue-500/10 transition-colors"
             >
-              <Github className="w-5 h-5 text-muted-foreground hover:text-green-400 transition-colors" />
+              <Github className="w-5 h-5 text-muted-foreground hover:text-blue-400 transition-colors" />
             </a>
           </motion.div>
         </div>
@@ -91,8 +91,8 @@ const Footer = () => {
           className="mt-8 pt-8 border-t border-white/5 text-center"
         >
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1 font-mono">
-            <span className="text-green-400">$</span> echo "© {currentYear} nev8rz. Made with
-            <Heart className="w-4 h-4 text-green-400 fill-green-400" />
+            <span className="text-blue-400">$</span> echo "© {currentYear} nev8rz. Made with
+            <Heart className="w-4 h-4 text-blue-400 fill-green-400" />
             and lots of coffee."
           </p>
         </motion.div>
