@@ -105,6 +105,27 @@
   border: 1px solid rgba(0, 255, 136, 0.2);
 }
 
+/* Code syntax highlighting */
+.code-keyword {
+  color: #ff79c6;
+}
+
+.code-string {
+  color: #50fa7b;
+}
+
+.code-punctuation {
+  color: #6272a4;
+}
+
+.code-class {
+  color: #f1fa8c;
+}
+
+.code-property {
+  color: #8be9fd;
+}
+
 /* Terminal cursor */
 .terminal-cursor {
   animation: blink 1s step-end infinite;

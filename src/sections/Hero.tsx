@@ -280,11 +280,11 @@ const Hero = () => {
 // Helper function to highlight Python code
 function highlightCode(line: string): string {
   return line
-    .replace(/(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)/g, '<span class="text-pink-400">$1</span>')
-    .replace(/(".*?")/g, '<span class="text-green-400">$1</span>')
-    .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, '<span class="text-muted-foreground">$1</span>')
-    .replace(/(AIResearcher|__init__)/g, '<span class="text-yellow-300">$1</span>')
-    .replace(/(name|role|focus|mission)/g, '<span class="text-blue-300">$1</span>');
+    .replace(/(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)/g, '<span class="code-keyword">$1</span>')
+    .replace(/(".*?")/g, '<span class="code-string">$1</span>')
+    .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, '<span class="code-punctuation">$1</span>')
+    .replace(/(AIResearcher|__init__)/g, '<span class="code-class">$1</span>')
+    .replace(/(name|role|focus|mission)/g, '<span class="code-property">$1</span>');
 }
 
 export default Hero;
