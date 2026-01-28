@@ -213,12 +213,7 @@ const Hero = () => {
                       <span className="text-muted-foreground w-8 text-right mr-4 select-none">
                         {index + 1}
                       </span>
-                      <span 
-                        className="whitespace-pre"
-                        dangerouslySetInnerHTML={{ 
-                          __html: highlightCode(item.line) 
-                        }}
-                      />
+                      <HighlightedLine line={item.line} />
                     </motion.div>
                   ))}
                   {/* Cursor */}
@@ -277,22 +272,91 @@ const Hero = () => {
   );
 };
 
-// Helper function to highlight Python code
-function highlightCode(line: string): string {
-  // Escape HTML entities first
+// Token type for code parsing
+type Token = {
+  type: 'keyword' | 'string' | 'punctuation' | 'class' | 'property' | 'text';
+  value: string;
+};
+
+// Helper function to tokenize and highlight Python code
+function tokenizeCode(line: string): Token[] {
+  // First escape HTML
   let escaped = line
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   
-  // Then apply syntax highlighting with inline styles
-  return escaped
-    .replace(/(".*?")/g, "<span style='color: #50fa7b'>$1</span>")
-    .replace(/('.*?')/g, "<span style='color: #50fa7b'>$1</span>")
-    .replace(/\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/g, "<span style='color: #ff79c6'>$1</span>")
-    .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, "<span style='color: #6272a4'>$1</span>")
-    .replace(/(AIResearcher|__init__)/g, "<span style='color: #f1fa8c'>$1</span>")
-    .replace(/(name|role|focus|mission)/g, "<span style='color: #8be9fd'>$1</span>");
+  const tokens: Token[] = [];
+  let remaining = escaped;
+  
+  // Match strings (both single and double quotes)
+  const stringRegex = /(".*?"|'.*?')/;
+  // Match keywords
+  const keywordRegex = /\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/;
+  // Match special names
+  const classRegex = /(AIResearcher|__init__)/;
+  // Match properties
+  const propertyRegex = /(name|role|focus|mission)/;
+  // Match punctuation
+  const punctRegex = /(\(|\)|:|,|\[|\]|=|\.|\{|\})/;
+  
+  while (remaining.length > 0) {
+    let match: RegExpMatchArray | null = null;
+    let tokenType: Token['type'] = 'text';
+    
+    // Try to match in order of priority
+    if ((match = remaining.match(stringRegex))) {
+      tokenType = 'string';
+    } else if ((match = remaining.match(keywordRegex))) {
+      tokenType = 'keyword';
+    } else if ((match = remaining.match(classRegex))) {
+      tokenType = 'class';
+    } else if ((match = remaining.match(propertyRegex))) {
+      tokenType = 'property';
+    } else if ((match = remaining.match(punctRegex))) {
+      tokenType = 'punctuation';
+    } else {
+      // Match single character
+      match = [remaining[0]];
+    }
+    
+    if (match && match.index === 0) {
+      tokens.push({ type: tokenType, value: match[0] });
+      remaining = remaining.slice(match[0].length);
+    } else {
+      // No match at start, take one character
+      tokens.push({ type: 'text', value: remaining[0] });
+      remaining = remaining.slice(1);
+    }
+  }
+  
+  return tokens;
+}
+
+// Component to render a single token
+function CodeToken({ token }: { token: Token }) {
+  const colors: Record<Token['type'], string> = {
+    keyword: 'text-pink-400',
+    string: 'text-green-400',
+    punctuation: 'text-gray-500',
+    class: 'text-yellow-300',
+    property: 'text-blue-300',
+    text: 'text-gray-300',
+  };
+  
+  return <span className={colors[token.type]}>{token.value}</span>;
+}
+
+// Component to render a highlighted line
+function HighlightedLine({ line }: { line: string }) {
+  const tokens = tokenizeCode(line);
+  return (
+    <span className="whitespace-pre">
+      {tokens.map((token, i) => (
+        <CodeToken key={i} token={token} />
+      ))}
+    </span>
+  );
 }
 
 export default Hero;
