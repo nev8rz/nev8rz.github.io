@@ -279,18 +279,20 @@ const Hero = () => {
 
 // Helper function to highlight Python code
 function highlightCode(line: string): string {
-  // Only escape quotes to prevent breaking HTML attributes
-  // Don't escape < and > as we need them for span tags
-  let safe = line.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  // Escape HTML entities first
+  let escaped = line
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
   
-  // Apply syntax highlighting
-  return safe
-    .replace(/(&quot;.*?&quot;)/g, '<span class="code-string">$1</span>')
-    .replace(/(&#39;.*?&#39;)/g, '<span class="code-string">$1</span>')
-    .replace(/\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/g, '<span class="code-keyword">$1</span>')
-    .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, '<span class="code-punctuation">$1</span>')
-    .replace(/(AIResearcher|__init__)/g, '<span class="code-class">$1</span>')
-    .replace(/(name|role|focus|mission)/g, '<span class="code-property">$1</span>');
+  // Then apply syntax highlighting with inline styles
+  return escaped
+    .replace(/(".*?")/g, "<span style='color: #50fa7b'>$1</span>")
+    .replace(/('.*?')/g, "<span style='color: #50fa7b'>$1</span>")
+    .replace(/\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/g, "<span style='color: #ff79c6'>$1</span>")
+    .replace(/(\(|\)|:|,|\[|\]|=|\.|\{|\})/g, "<span style='color: #6272a4'>$1</span>")
+    .replace(/(AIResearcher|__init__)/g, "<span style='color: #f1fa8c'>$1</span>")
+    .replace(/(name|role|focus|mission)/g, "<span style='color: #8be9fd'>$1</span>");
 }
 
 export default Hero;
