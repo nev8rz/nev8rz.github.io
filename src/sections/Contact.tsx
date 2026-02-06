@@ -1,126 +1,95 @@
 import { motion, useInView } from "framer-motion";
+import { Github, Mail, MapPin } from "lucide-react";
 import { useRef } from "react";
-import { Github, Mail, MapPin, ExternalLink, MessageCircle, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const contacts = [
+  {
+    label: "GitHub",
+    value: "@nev8rz",
+    desc: "Open-source projects and ongoing experiments.",
+    href: "https://github.com/nev8rz",
+    icon: Github,
+  },
+  {
+    label: "Email",
+    value: "Contact",
+    desc: "For collaboration, internship, or engineering discussions.",
+    href: "mailto:nev8rz@example.com",
+    icon: Mail,
+  },
+];
 
-  const contactLinks = [
-    {
-      name: "GitHub",
-      handle: "@nev8rz",
-      description: "Check out my open-source projects and contributions",
-      icon: Github,
-      href: "https://github.com/nev8rz",
-      color: "from-green-600 to-emerald-700",
-    },
-    {
-      name: "Email",
-      handle: "Contact Me",
-      description: "Reach out for collaborations or opportunities",
-      icon: Mail,
-      href: "mailto:nev8rz@example.com",
-      color: "from-emerald-600 to-teal-700",
-    },
-  ];
+const Contact = () => {
+  const ref = useRef<HTMLElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="contact" className="section-shell" ref={ref}>
+      <div className="section-wrap">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="mb-10 space-y-4"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
-            <Terminal className="w-4 h-4 inline mr-2" />
-            Get In Touch
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-white">Let's </span>
-            <span className="text-gradient">Connect</span>
+          <span className="eyebrow mono">Contact</span>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Let&apos;s build something useful.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or 
-            opportunities to be part of your vision.
+          <p className="max-w-3xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
+            I am open to conversations around AI engineering, research collaboration,
+            and product-focused implementation work.
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-16">
-          {contactLinks.map((link, index) => (
+        <div className="grid gap-5 md:grid-cols-2">
+          {contacts.map((item, index) => (
             <motion.a
-              key={link.name}
-              href={link.href}
+              key={item.label}
+              href={item.href}
               target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="group code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.35, delay: index * 0.06 }}
+              className="surface block p-5 transition-colors hover:bg-white/[0.06]"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${link.color} flex items-center justify-center shadow-lg`}>
-                  <link.icon className="w-7 h-7 text-white" />
-                </div>
-                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
+              <div className="mb-3 inline-flex rounded-lg border border-amber-300/40 bg-amber-300/12 p-2">
+                <item.icon className="h-5 w-5 text-amber-100" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-1 font-mono">{link.name}</h3>
-              <p className="text-blue-400 font-medium mb-2 font-mono">{link.handle}</p>
-              <p className="text-sm text-muted-foreground">{link.description}</p>
+              <h3 className="text-lg font-medium text-white">{item.label}</h3>
+              <p className="mono mt-1 text-xs uppercase tracking-[0.14em] text-amber-100">{item.value}</p>
+              <p className="mt-2 text-sm text-slate-300">{item.desc}</p>
             </motion.a>
           ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="code-block rounded-3xl p-8 sm:p-12 text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="surface-strong mt-6 p-6 sm:p-7"
         >
-          <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mx-auto mb-6">
-            <MessageCircle className="w-8 h-8 text-blue-400" />
+          <div className="flex flex-wrap items-center justify-between gap-5">
+            <div>
+              <p className="mono text-xs uppercase tracking-[0.14em] text-cyan-100">Availability</p>
+              <p className="mt-2 text-lg font-medium text-white">Open for collaboration and internships</p>
+              <p className="mt-2 flex items-center gap-2 text-sm text-slate-300">
+                <MapPin className="h-4 w-4 text-cyan-200" />
+                Shanghai, China
+              </p>
+            </div>
+            <Button
+              asChild
+              className="mono h-11 rounded-lg border border-cyan-200/45 bg-cyan-300/20 px-5 text-xs uppercase tracking-[0.14em] text-cyan-50 hover:bg-cyan-300/30"
+            >
+              <a href="https://github.com/nev8rz" target="_blank" rel="noreferrer">
+                <Github className="mr-2 h-4 w-4" />
+                Visit Github
+              </a>
+            </Button>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-mono">
-            Interested in collaborating?
-          </h3>
-          <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-            I'm currently looking for new opportunities and interesting projects. 
-            Whether you have a question or just want to say hi, I'll try my best 
-            to get back to you!
-          </p>
-          <Button
-            size="lg"
-            className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:shadow-glow-blue font-mono"
-            asChild
-          >
-            <a href="https://github.com/nev8rz" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-2" />
-              Visit My GitHub
-            </a>
-          </Button>
-        </motion.div>
-
-        {/* Location */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex items-center justify-center gap-2 mt-12 text-muted-foreground"
-        >
-          <MapPin className="w-4 h-4 text-blue-400" />
-          <span className="font-mono">Based in Shanghai, China</span>
         </motion.div>
       </div>
     </section>

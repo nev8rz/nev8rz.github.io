@@ -1,152 +1,131 @@
 import { motion, useInView } from "framer-motion";
+import { Cpu, Database, Gauge, Terminal } from "lucide-react";
 import { useRef } from "react";
-import { Code2, Terminal, Database, Cpu } from "lucide-react";
+
+const categories = [
+  {
+    title: "ML Engineering",
+    icon: Cpu,
+    skills: [
+      { name: "PyTorch", level: 90 },
+      { name: "Deep Learning", level: 86 },
+      { name: "LLM Training", level: 81 },
+    ],
+  },
+  {
+    title: "Systems & Tooling",
+    icon: Terminal,
+    skills: [
+      { name: "Python", level: 95 },
+      { name: "Linux / Shell", level: 84 },
+      { name: "Docker", level: 80 },
+    ],
+  },
+  {
+    title: "Data & Retrieval",
+    icon: Database,
+    skills: [
+      { name: "Vector Databases", level: 76 },
+      { name: "RAG Pipelines", level: 78 },
+      { name: "SQL", level: 70 },
+    ],
+  },
+  {
+    title: "Delivery",
+    icon: Gauge,
+    skills: [
+      { name: "Git Workflow", level: 88 },
+      { name: "Experiment Tracking", level: 79 },
+      { name: "Project Structuring", level: 82 },
+    ],
+  },
+];
+
+const toolbelt = [
+  "Python",
+  "PyTorch",
+  "CUDA",
+  "vLLM",
+  "Docker",
+  "GitHub Actions",
+  "Linux",
+  "RAG",
+  "Evaluation",
+];
 
 const Skills = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const skillCategories = [
-    {
-      title: "Programming Languages",
-      icon: Code2,
-      skills: [
-        { name: "Python", level: 95 },
-        { name: "Shell/Bash", level: 80 },
-      ],
-      color: "from-green-400 to-emerald-500",
-    },
-    {
-      title: "AI & Machine Learning",
-      icon: Cpu,
-      skills: [
-        { name: "PyTorch", level: 90 },
-        { name: "Deep Learning", level: 85 },
-        { name: "NLP", level: 80 },
-      ],
-      color: "from-emerald-400 to-teal-500",
-    },
-    {
-      title: "Tools & Platforms",
-      icon: Terminal,
-      skills: [
-        { name: "Docker", level: 85 },
-        { name: "Git", level: 90 },
-        { name: "Linux", level: 88 },
-      ],
-      color: "from-teal-400 to-cyan-500",
-    },
-    {
-      title: "Databases & Storage",
-      icon: Database,
-      skills: [
-        { name: "Vector Databases", level: 75 },
-        { name: "SQL", level: 70 },
-      ],
-      color: "from-cyan-400 to-blue-500",
-    },
-  ];
-
-  const technologies = [
-    { name: "Python", category: "Language" },
-    { name: "PyTorch", category: "ML" },
-    { name: "Docker", category: "DevOps" },
-    { name: "Git", category: "Version Control" },
-    { name: "Linux", category: "OS" },
-    { name: "Shell", category: "Scripting" },
-    { name: "CUDA", category: "GPU" },
-    { name: "vLLM", category: "Inference" },
-  ];
+  const ref = useRef<HTMLElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id="skills" className="relative py-24 lg:py-32" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="skills" className="section-shell" ref={ref}>
+      <div className="section-wrap">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="mb-10 space-y-4"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
-            $ cat expertise.txt
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-white">Technical </span>
-            <span className="text-gradient">Skills</span>
+          <span className="eyebrow mono">Skills</span>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Practical capabilities across model and product layers.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My toolkit for building AI-powered applications and scalable software solutions.
+          <p className="max-w-3xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
+            I value shipping quality: model performance matters, but reliability,
+            observability, and maintainability matter just as much.
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
-          {skillCategories.map((category, index) => (
-            <motion.div
+        <div className="grid gap-5 md:grid-cols-2">
+          {categories.map((category, index) => (
+            <motion.article
               key={category.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.35, delay: index * 0.05 }}
+              className="surface p-5"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}>
-                  <category.icon className="w-6 h-6 text-black" />
+              <div className="mb-4 flex items-center gap-3">
+                <div className="rounded-lg border border-cyan-300/30 bg-cyan-300/12 p-2">
+                  <category.icon className="h-5 w-5 text-cyan-100" />
                 </div>
-                <h3 className="text-xl font-semibold text-white font-mono">{category.title}</h3>
+                <h3 className="text-lg font-medium text-white">{category.title}</h3>
               </div>
 
               <div className="space-y-4">
                 {category.skills.map((skill) => (
                   <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-muted-foreground font-mono">{skill.name}</span>
-                      <span className="text-sm text-blue-400 font-mono">{skill.level}%</span>
+                    <div className="mb-1 flex items-center justify-between">
+                      <span className="text-sm text-slate-200">{skill.name}</span>
+                      <span className="mono text-xs text-cyan-100">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-2 rounded-full bg-white/10">
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                        className={`h-full rounded-full bg-gradient-to-r ${category.color}`}
+                        animate={inView ? { width: `${skill.level}%` } : {}}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="h-full rounded-full bg-gradient-to-r from-cyan-300/90 to-amber-300/80"
                       />
                     </div>
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Tech Stack Tags */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="code-block rounded-2xl p-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.35, delay: 0.2 }}
+          className="surface mt-6 p-5"
         >
-          <h3 className="text-xl font-semibold text-white mb-6 text-center font-mono">
-            Technologies I Work With
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.7 + index * 0.05 }}
-                className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/5 hover:bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 cursor-default"
-              >
-                <span className="text-blue-400 font-mono">{tech.name}</span>
-                <span className="text-xs text-muted-foreground">// {tech.category}</span>
-              </motion.div>
+          <h3 className="mb-4 text-lg font-medium text-white">Toolbelt</h3>
+          <div className="flex flex-wrap gap-2">
+            {toolbelt.map((tool) => (
+              <span key={tool} className="chip mono">
+                {tool}
+              </span>
             ))}
           </div>
         </motion.div>

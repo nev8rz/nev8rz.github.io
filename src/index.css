@@ -1,149 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 271 77% 63%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
+    --background: 216 38% 7%;
+    --foreground: 210 40% 96%;
+    --card: 218 32% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 218 32% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 188 82% 43%;
+    --primary-foreground: 211 50% 8%;
+    --secondary: 216 24% 18%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 20% 22%;
+    --muted-foreground: 214 22% 72%;
+    --accent: 37 92% 56%;
+    --accent-foreground: 211 50% 8%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 22% 24%;
+    --input: 217 22% 24%;
+    --ring: 188 82% 43%;
+    --radius: 0.9rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
+    margin: 0;
+    min-height: 100vh;
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    background-color: #0a0a0a;
+    font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(34, 211, 238, 0.15), transparent 38%),
+      radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.14), transparent 34%),
+      linear-gradient(180deg, #09101d 0%, #070b13 100%);
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply relative py-20 sm:py-24 lg:py-28;
+  }
+
+  .section-wrap {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  }
+
+  .surface-strong {
+    @apply rounded-3xl border border-cyan-200/20 bg-slate-950/60 backdrop-blur-2xl;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-cyan-100;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", "JetBrains Mono", monospace;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-slate-200;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400;
-  }
-
-  .text-glow {
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5),
-                 0 0 20px rgba(168, 85, 247, 0.4),
-                 0 0 30px rgba(96, 165, 250, 0.3);
-  }
-
-  .glass {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
-  }
-
-  .glass-blue {
-    @apply bg-blue-500/[0.05] backdrop-blur-xl border border-blue-500/20;
-  }
-
-  .glass-purple {
-    @apply bg-purple-500/[0.05] backdrop-blur-xl border border-purple-500/20;
-  }
-
-  .glow-blue {
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.2),
-                0 0 40px rgba(96, 165, 250, 0.1),
-                0 0 60px rgba(96, 165, 250, 0.05);
-  }
-
-  .terminal-border {
-    border: 1px solid rgba(96, 165, 250, 0.3);
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.15),
-                inset 0 0 15px rgba(96, 165, 250, 0.05);
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0a1222;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
-  border-radius: 4px;
+  background: #1d324b;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ff88;
+  background: #2f4f74;
 }
 
-/* Selection */
 ::selection {
-  background: rgba(0, 255, 136, 0.3);
-  color: white;
-}
-
-/* Code block styling */
-.code-block {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-  background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
-  border: 1px solid rgba(0, 255, 136, 0.2);
-}
-
-/* Code syntax highlighting */
-.code-keyword {
-  color: #ff79c6;
-}
-
-.code-string {
-  color: #50fa7b;
-}
-
-.code-punctuation {
-  color: #6272a4;
-}
-
-.code-class {
-  color: #f1fa8c;
-}
-
-.code-property {
-  color: #8be9fd;
-}
-
-/* Terminal cursor */
-.terminal-cursor {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* Matrix rain effect */
-.matrix-bg {
-  background: linear-gradient(180deg, 
-    transparent 0%, 
-    rgba(0, 255, 136, 0.03) 50%, 
-    transparent 100%);
+  background: rgba(34, 211, 238, 0.35);
+  color: #f8fafc;
 }

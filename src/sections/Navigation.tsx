@@ -1,141 +1,127 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Terminal } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Menu, X } from "lucide-react";
+
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+];
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const onNavigate = (href: string) => {
+    setMenuOpen(false);
+    const section = document.querySelector(href);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-blue-500/10"
-            : "bg-transparent"
+        initial={{ y: -36, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-200 ${
+          scrolled
+            ? "border-white/15 bg-slate-950/75 backdrop-blur-xl"
+            : "border-transparent bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <a
-              href="#"
-              className="flex items-center gap-2 group"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+        <div className="section-wrap">
+          <div className="flex h-16 items-center justify-between sm:h-[4.5rem]">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="group inline-flex items-center gap-2"
             >
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center group-hover:shadow-glow-blue transition-shadow duration-300">
-                <Terminal className="w-5 h-5 text-black" />
-              </div>
-              <span className="text-white font-semibold hidden sm:block font-mono">nev8rz</span>
-            </a>
+              <span className="mono rounded-md border border-cyan-300/30 bg-cyan-300/15 px-2 py-1 text-xs uppercase tracking-[0.14em] text-cyan-100 transition-colors group-hover:border-cyan-200/55 group-hover:bg-cyan-300/20">
+                yz
+              </span>
+              <span className="text-base font-semibold tracking-tight text-slate-100">
+                nev8rz
+              </span>
+            </button>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="px-4 py-2 rounded-lg text-sm text-muted-foreground hover:text-blue-400 hover:bg-blue-500/5 transition-all duration-200 font-mono"
+            <nav className="hidden items-center gap-1 md:flex">
+              {links.map((item) => (
+                <button
+                  key={item.href}
+                  type="button"
+                  onClick={() => onNavigate(item.href)}
+                  className="mono rounded-lg px-4 py-2 text-xs uppercase tracking-[0.14em] text-slate-300 transition-all hover:bg-white/5 hover:text-white"
                 >
-                  {link.name}
-                </a>
+                  {item.label}
+                </button>
               ))}
             </nav>
 
-            {/* CTA Button */}
             <div className="hidden md:block">
               <a
                 href="https://github.com/nev8rz"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 text-sm font-medium transition-all duration-300 hover:shadow-glow-blue font-mono"
+                rel="noreferrer"
+                className="mono inline-flex items-center gap-2 rounded-lg border border-amber-300/40 bg-amber-300/15 px-4 py-2 text-xs uppercase tracking-[0.14em] text-amber-50 transition-colors hover:bg-amber-300/25"
               >
-                GitHub
+                <Github className="h-4 w-4" />
+                Github
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-blue-500/10 transition-colors"
+              type="button"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              className="inline-flex rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 md:hidden"
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-blue-400" />
-              ) : (
-                <Menu className="w-6 h-6 text-white" />
-              )}
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 md:hidden"
+            className="fixed inset-x-4 top-[4.6rem] z-40 rounded-2xl border border-white/15 bg-slate-950/95 p-3 shadow-2xl backdrop-blur-xl md:hidden"
           >
-            <div className="mx-4 mt-2 p-4 rounded-2xl code-block border border-blue-500/20">
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="px-4 py-3 rounded-xl text-muted-foreground hover:text-blue-400 hover:bg-blue-500/5 transition-all duration-200 font-mono"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-                <div className="mt-2 pt-2 border-t border-white/5">
-                  <a
-                    href="https://github.com/nev8rz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 font-medium font-mono border border-blue-500/30"
-                  >
-                    GitHub Profile
-                  </a>
-                </div>
-              </nav>
-            </div>
+            <nav className="grid gap-1">
+              {links.map((item) => (
+                <button
+                  key={item.href}
+                  type="button"
+                  onClick={() => onNavigate(item.href)}
+                  className="mono rounded-lg px-3 py-3 text-left text-xs uppercase tracking-[0.14em] text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                >
+                  {item.label}
+                </button>
+              ))}
+              <a
+                href="https://github.com/nev8rz"
+                target="_blank"
+                rel="noreferrer"
+                className="mono mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-amber-300/40 bg-amber-300/15 px-4 py-3 text-xs uppercase tracking-[0.14em] text-amber-50"
+              >
+                <Github className="h-4 w-4" />
+                Github Profile
+              </a>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

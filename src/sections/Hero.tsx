@@ -1,362 +1,131 @@
 import { motion } from "framer-motion";
-import { Github, MapPin, GraduationCap, Terminal, Send, ChevronRight } from "lucide-react";
+import { ArrowRight, Github, GraduationCap, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Hero = () => {
+const highlights = [
+  "Focused on LLM systems and AI engineering",
+  "Building practical tools from research ideas",
+  "Open to collaboration on useful products",
+];
 
+const metrics = [
+  { label: "Core Stack", value: "Python / PyTorch" },
+  { label: "Focus", value: "LLM & Infra" },
+  { label: "Location", value: "Shanghai" },
+];
+
+const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        {/* Gradient Orbs */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px]"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-emerald-500/10 blur-[100px]"
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,255,136,0.3) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0,255,136,0.3) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-          }}
-        />
+    <section className="relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-36">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[8%] top-[12%] h-56 w-56 rounded-full bg-cyan-300/20 blur-3xl" />
+        <div className="absolute bottom-[8%] right-[8%] h-56 w-56 rounded-full bg-amber-300/20 blur-3xl" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text Content */}
-          <div className="space-y-8">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono">
-                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                Available for Research Collaboration
-              </span>
-            </motion.div>
-
-            {/* Name */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                <span className="text-white">nev</span>
-                <span className="text-gradient text-glow">8rz</span>
-              </h1>
-            </motion.div>
-
-            {/* Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-2"
-            >
-              <p className="text-2xl sm:text-3xl text-blue-400 font-mono">
-                AI & Software Engineer
-              </p>
-              <p className="text-xl text-muted-foreground">
-                Graduate Student
-              </p>
-            </motion.div>
-
-            {/* Institution & Location */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="space-y-2"
-            >
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <GraduationCap className="w-5 h-5 text-blue-400" />
-                <span>University of Science and Technology of China (USTC)</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="w-5 h-5 text-blue-400" />
-                <span>Shanghai, China</span>
-              </div>
-            </motion.div>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg text-muted-foreground leading-relaxed max-w-lg"
-            >
-              Exploring the depths of language models, deep learning, and software engineering. 
-              Building AI-powered systems for the next generation of intelligent applications.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Button
-                size="lg"
-                className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-6 py-6 text-lg rounded-lg font-mono transition-all duration-300 hover:shadow-glow-blue group"
-                asChild
-              >
-                <a href="#projects">
-                  <Terminal className="w-5 h-5 mr-2" />
-                  <ChevronRight className="w-4 h-4 mr-1" />
-                  View Projects
-                </a>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 hover:bg-white/5 text-white px-6 py-6 text-lg rounded-lg transition-all duration-300"
-                asChild
-              >
-                <a href="#contact">
-                  <Send className="w-5 h-5 mr-2" />
-                  Get in Touch
-                </a>
-              </Button>
-            </motion.div>
-
-            {/* Social Icons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex gap-3"
-            >
-              <a
-                href="https://github.com/nev8rz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 group"
-              >
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Right Column - Code Editor */}
+      <div className="section-wrap relative z-10">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="space-y-7"
           >
-            <div className="code-block rounded-2xl overflow-hidden shadow-2xl">
-              {/* Editor Header */}
-              <div className="bg-[#1a1a1a] px-4 py-3 flex items-center gap-2 border-b border-blue-500/20">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                </div>
-                <span className="ml-4 text-sm text-muted-foreground font-mono">
-                  researcher_profile.py — nev8rz
-                </span>
-              </div>
+            <span className="eyebrow mono">
+              <Sparkles className="h-3.5 w-3.5" />
+              AI Engineer Portfolio
+            </span>
 
-              {/* Editor Content */}
-              <div className="bg-[#0d1117] p-6 font-mono text-sm overflow-hidden">
-                <div className="space-y-1">
-                  {[
-                    { line: 'class AIResearcher:', indent: 0 },
-                    { line: '    def __init__(self):', indent: 1 },
-                    { line: '        self.name = "Yijin Zhou"', indent: 2 },
-                    { line: '        self.role = "Graduate Student"', indent: 2 },
-                    { line: '        self.focus = [', indent: 2 },
-                    { line: '            "language_models",', indent: 3 },
-                    { line: '            "deep_learning",', indent: 3 },
-                    { line: '            "software_engineering"', indent: 3 },
-                    { line: '        ]', indent: 2 },
-                    { line: '        self.mission = "Build intelligent systems"', indent: 2 },
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                      className="flex"
-                    >
-                      <span className="text-muted-foreground w-8 text-right mr-4 select-none">
-                        {index + 1}
-                      </span>
-                      <HighlightedLine line={item.line} />
-                    </motion.div>
-                  ))}
-                  {/* Cursor */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="flex"
-                  >
-                    <span className="text-muted-foreground w-8 text-right mr-4 select-none">
-                      11
-                    </span>
-                    <span className="w-2 h-5 bg-blue-400 terminal-cursor" />
-                  </motion.div>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <h1 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Building reliable AI products from research to delivery.
+              </h1>
+              <p className="max-w-2xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
+                I am Yijin Zhou (nev8rz), a software engineer and graduate student focusing
+                on language models, tooling, and scalable ML workflows.
+              </p>
             </div>
 
-            {/* Floating Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="absolute -bottom-4 -right-4 glass-purple rounded-xl p-4"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                  <Terminal className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <div className="text-xs text-muted-foreground">Research Focus</div>
-                  <div className="text-white font-semibold">Language Models</div>
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex flex-wrap gap-3 text-sm text-slate-200">
+              <span className="chip mono">
+                <GraduationCap className="mr-2 h-4 w-4 text-cyan-200" />
+                USTC - Software Engineering
+              </span>
+              <span className="chip mono">
+                <MapPin className="mr-2 h-4 w-4 text-cyan-200" />
+                Shanghai, China
+              </span>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Button
+                asChild
+                className="mono h-11 rounded-lg border border-cyan-200/45 bg-cyan-300/20 px-5 text-xs uppercase tracking-[0.14em] text-cyan-50 hover:bg-cyan-300/30"
+              >
+                <a href="#projects">
+                  Explore Projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="mono h-11 rounded-lg border-white/25 bg-white/0 px-5 text-xs uppercase tracking-[0.14em] text-slate-100 hover:bg-white/10"
+              >
+                <a href="#contact">Contact</a>
+              </Button>
+              <Button
+                asChild
+                variant="ghost"
+                className="mono h-11 rounded-lg border border-amber-300/35 bg-amber-300/10 px-5 text-xs uppercase tracking-[0.14em] text-amber-100 hover:bg-amber-300/20"
+              >
+                <a href="https://github.com/nev8rz" target="_blank" rel="noreferrer">
+                  <Github className="mr-2 h-4 w-4" />
+                  Github
+                </a>
+              </Button>
+            </div>
+
+            <ul className="space-y-2 text-sm text-slate-300">
+              {highlights.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
+
+          <motion.aside
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="surface-strong p-6 sm:p-7"
+          >
+            <p className="mono text-xs uppercase tracking-[0.14em] text-cyan-200">
+              Current Snapshot
+            </p>
+            <div className="mt-4 space-y-3 rounded-2xl border border-white/10 bg-black/35 p-4">
+              {metrics.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between border-b border-white/10 pb-3 last:border-b-0 last:pb-0"
+                >
+                  <span className="mono text-xs uppercase tracking-[0.12em] text-slate-400">
+                    {item.label}
+                  </span>
+                  <span className="text-sm font-medium text-slate-100">{item.value}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-slate-300">
+              Strong interest in turning raw model capability into stable developer
+              experience, observability, and maintainable architecture.
+            </p>
+          </motion.aside>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-blue-500/30 flex justify-center pt-2"
-        >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };
-
-// Token type for code parsing
-type Token = {
-  type: 'keyword' | 'string' | 'punctuation' | 'class' | 'property' | 'text';
-  value: string;
-};
-
-// Helper function to tokenize and highlight Python code
-function tokenizeCode(line: string): Token[] {
-  // First escape HTML
-  let escaped = line
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-  
-  const tokens: Token[] = [];
-  let remaining = escaped;
-  
-  // Match strings (both single and double quotes)
-  const stringRegex = /(".*?"|'.*?')/;
-  // Match keywords
-  const keywordRegex = /\b(class|def|self|return|import|from|if|else|for|while|in|and|or|not|is|None|True|False)\b/;
-  // Match special names
-  const classRegex = /(AIResearcher|__init__)/;
-  // Match properties
-  const propertyRegex = /(name|role|focus|mission)/;
-  // Match punctuation
-  const punctRegex = /(\(|\)|:|,|\[|\]|=|\.|\{|\})/;
-  
-  while (remaining.length > 0) {
-    let match: RegExpMatchArray | null = null;
-    let tokenType: Token['type'] = 'text';
-    
-    // Try to match in order of priority
-    if ((match = remaining.match(stringRegex))) {
-      tokenType = 'string';
-    } else if ((match = remaining.match(keywordRegex))) {
-      tokenType = 'keyword';
-    } else if ((match = remaining.match(classRegex))) {
-      tokenType = 'class';
-    } else if ((match = remaining.match(propertyRegex))) {
-      tokenType = 'property';
-    } else if ((match = remaining.match(punctRegex))) {
-      tokenType = 'punctuation';
-    } else {
-      // Match single character
-      match = [remaining[0]];
-    }
-    
-    if (match && match.index === 0) {
-      tokens.push({ type: tokenType, value: match[0] });
-      remaining = remaining.slice(match[0].length);
-    } else {
-      // No match at start, take one character
-      tokens.push({ type: 'text', value: remaining[0] });
-      remaining = remaining.slice(1);
-    }
-  }
-  
-  return tokens;
-}
-
-// Component to render a single token
-function CodeToken({ token }: { token: Token }) {
-  const colors: Record<Token['type'], string> = {
-    keyword: 'text-pink-400',
-    string: 'text-green-400',
-    punctuation: 'text-gray-500',
-    class: 'text-yellow-300',
-    property: 'text-blue-300',
-    text: 'text-gray-300',
-  };
-  
-  return <span className={colors[token.type]}>{token.value}</span>;
-}
-
-// Component to render a highlighted line
-function HighlightedLine({ line }: { line: string }) {
-  const tokens = tokenizeCode(line);
-  return (
-    <span className="whitespace-pre">
-      {tokens.map((token, i) => (
-        <CodeToken key={i} token={token} />
-      ))}
-    </span>
-  );
-}
 
 export default Hero;

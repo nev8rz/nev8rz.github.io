@@ -1,142 +1,98 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { Code2, Compass, GraduationCap, Rocket } from "lucide-react";
 import { useRef } from "react";
-import { GraduationCap, Code2, Lightbulb, Rocket, MapPin, Terminal } from "lucide-react";
+
+const cards = [
+  {
+    title: "Research Foundation",
+    icon: GraduationCap,
+    description:
+      "Master's candidate in Software Engineering at USTC, with sustained work in deep learning and language models.",
+  },
+  {
+    title: "Engineering Execution",
+    icon: Code2,
+    description:
+      "Hands-on building of model training, inference, and workflow tooling with a strong bias toward practical reliability.",
+  },
+  {
+    title: "Direction",
+    icon: Compass,
+    description:
+      "I prioritize building systems that are measurable, maintainable, and useful in real deployment settings.",
+  },
+  {
+    title: "Growth",
+    icon: Rocket,
+    description:
+      "Continuous iteration through open-source delivery, paper reading, and implementation feedback loops.",
+  },
+];
 
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const highlights = [
-    {
-      icon: GraduationCap,
-      title: "Education",
-      description: "Master's candidate at USTC School of Software Engineering, focusing on AI and software technologies.",
-    },
-    {
-      icon: Code2,
-      title: "Development",
-      description: "Building high-performance AI systems and language models. Experienced in PyTorch and deep learning.",
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation",
-      description: "Passionate about exploring emerging AI technologies and turning creative ideas into practical solutions.",
-    },
-    {
-      icon: Rocket,
-      title: "Goals",
-      description: "Dedicated to creating efficient, scalable AI systems that solve real-world problems.",
-    },
-  ];
+  const ref = useRef<HTMLElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id="about" className="relative py-24 lg:py-32" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-[80px]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="about" className="section-shell" ref={ref}>
+      <div className="section-wrap">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="mb-10 space-y-4"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-blue text-sm text-blue-400 font-mono mb-4">
-            <Terminal className="w-4 h-4 inline mr-2" />
-            About Me
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-white">Who </span>
-            <span className="text-gradient">I Am</span>
+          <span className="eyebrow mono">About</span>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Research mindset, product discipline.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A passionate AI researcher and software engineer, constantly learning 
-            and building innovative solutions.
+          <p className="max-w-3xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
+            I like building at the boundary of research and software engineering: understanding
+            model behavior deeply, then shaping it into robust tools that other developers can
+            trust and extend.
           </p>
         </motion.div>
 
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+        <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: 0.05 }}
+            className="surface-strong p-6 sm:p-8"
           >
-            <div className="code-block rounded-2xl p-8 space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Hi there! I'm <span className="text-blue-400 font-mono">Yijin Zhou</span>, 
-                a graduate student at the University of Science and Technology of China (USTC). 
-                I'm currently pursuing my Master's degree in Software Engineering.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                My journey in AI and software development is driven by a deep curiosity for 
-                language models and a passion for creating elegant, efficient solutions. 
-                I believe in the power of technology to transform ideas into reality.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new AI research, 
-                contributing to open-source projects, or diving deep into papers 
-                to stay at the forefront of innovation.
-              </p>
+            <p className="text-base leading-relaxed text-slate-200">
+              My work usually starts from a concrete bottleneck: latency, quality,
+              reproducibility, or developer complexity. I then iterate from data and
+              architecture decisions to build a simpler and stronger workflow.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-300">
+              I prefer clear baselines, measurable improvements, and transparent tradeoffs
+              over complicated designs that are hard to maintain.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="chip mono">Model Systems</span>
+              <span className="chip mono">Pipeline Design</span>
+              <span className="chip mono">Production Thinking</span>
             </div>
+          </motion.article>
 
-            {/* Quick Facts */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Location", value: "Shanghai, China", icon: MapPin },
-                { label: "Focus", value: "AI & Software", icon: Terminal },
-                { label: "University", value: "USTC", icon: GraduationCap },
-                { label: "Status", value: "Grad Student", icon: Code2 },
-              ].map((fact, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="glass rounded-xl p-4 hover:border-blue-500/30 transition-colors"
-                >
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                    <fact.icon className="w-4 h-4 text-blue-400" />
-                    {fact.label}
-                  </div>
-                  <div className="text-lg font-semibold text-white font-mono">{fact.value}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Column - Highlights */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="grid sm:grid-cols-2 gap-4"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="code-block rounded-2xl p-6 hover:bg-blue-500/5 transition-all duration-300 group"
+          <div className="grid gap-4 sm:grid-cols-2">
+            {cards.map((item, index) => (
+              <motion.article
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.35, delay: 0.1 + index * 0.06 }}
+                className="surface p-5"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
-                  <item.icon className="w-6 h-6 text-blue-400" />
+                <div className="mb-3 inline-flex rounded-lg border border-cyan-300/30 bg-cyan-300/10 p-2">
+                  <item.icon className="h-5 w-5 text-cyan-100" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2 font-mono">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
+                <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.description}</p>
+              </motion.article>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
